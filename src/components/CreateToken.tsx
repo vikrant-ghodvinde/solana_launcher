@@ -300,9 +300,6 @@ export const CreateToken: FC = () => {
                 )}
               </label>
             </div>
-            {/* {selectedFile && (
-              <p className="text-sm text-gray-500">{selectedFile}</p>
-            )} */}
           </div>
         </div>
       </div>
