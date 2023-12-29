@@ -33,7 +33,7 @@ export const CreateToken: FC = () => {
   const [symbol, setSymbol] = useState("");
   const [metadata, setMetadata] = useState("");
   const [amount, setAmount] = useState("");
-  const [decimals, setDecimals] = useState("");
+  const [decimals, setDecimals] = useState(1);
   const [mintAuthority, setMintAuthority] = useState("");
   const [freezeAuthority, setFreezeAuthority] = useState("");
   const [mintAuthorityToggle, setMintAuthorityToggle] = useState(false);
@@ -277,7 +277,7 @@ export const CreateToken: FC = () => {
         </div>
       </div>
       <div className="relative col-span-2 sm:col-span-1">
-        <label htmlFor="" className="block text-white mb-2">
+        <label htmlFor="" className="inline-block text-white mb-2">
           Token name
         </label>
         <input
@@ -288,7 +288,7 @@ export const CreateToken: FC = () => {
         />
       </div>
       <div className="relative col-span-2 sm:col-span-1">
-        <label htmlFor="" className="block text-white mb-2">
+        <label htmlFor="" className="inline-block text-white mb-2">
           Token symbol
         </label>
         <input
@@ -299,7 +299,7 @@ export const CreateToken: FC = () => {
         />
       </div>
       <div className="relative col-span-2">
-        <label htmlFor="" className="block text-white mb-2">
+        <label htmlFor="" className="inline-block text-white mb-2">
           Metadata URL
         </label>
         <input
@@ -310,7 +310,7 @@ export const CreateToken: FC = () => {
         />
       </div>
       <div className="relative col-span-2 sm:col-span-1">
-        <label htmlFor="" className="block text-white mb-2">
+        <label htmlFor="" className="inline-block text-white mb-2">
           Amount
         </label>
         <input
@@ -321,21 +321,39 @@ export const CreateToken: FC = () => {
         />
       </div>
       <div className="relative col-span-2 sm:col-span-1">
-        <label htmlFor="" className="block text-white mb-2">
+        <label htmlFor="" className="inline-block text-white mb-2">
           Decimals
         </label>
-        <input
-          type="number"
-          step="0.01"
-          className="relative w-full h-11 rounded bg-transparent border border-white outline-none px-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          placeholder="Decimals"
-          onChange={(e) => setDecimals(e.target.value)}
-        />
+        <div className="flex items-center">
+          <button
+            type="button"
+            className="relative w-12 h-11 border border-white rounded-l text-3xl hover:text-primary-color disabled:text-gray-500 disabled:hover:text-gray-500 disabled:cursor-not-allowed"
+            disabled={decimals <= 0 ? true : false}
+            onClick={() => decimals > 0 ? setDecimals(decimals - 1) : null}
+          >
+            -
+          </button>
+          <input
+            type="number"
+            value={decimals}
+            className="relative text-center w-full h-11 bg-transparent border border-r-0 border-l-0 border-white outline-none px-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            placeholder="Decimals"
+            onChange={(e) => setDecimals(parseInt(e.target.value))}
+          />
+          <button
+            type="button"
+            className="relative w-12 h-11 border border-white rounded-r text-xl hover:text-primary-color disabled:text-gray-500 disabled:hover:text-gray-500 disabled:cursor-not-allowed"
+            disabled={decimals >= 9 ? true : false}
+            onClick={() => decimals < 9 ? setDecimals(decimals + 1) : null}
+          >
+            +
+          </button>
+        </div>
       </div>
       <div className="relative col-span-2 sm:col-span-1">
         <label
           htmlFor="mintAuthority"
-          className="flex items-center gap-3 text-white mb-2"
+          className="inline-flex items-center gap-3 text-white mb-2"
         >
           <input
             type="checkbox"
@@ -358,7 +376,7 @@ export const CreateToken: FC = () => {
       <div className="relative col-span-2 sm:col-span-1">
         <label
           htmlFor="freezeAddress"
-          className="flex items-center gap-3 text-white mb-2"
+          className="inline-flex items-center gap-3 text-white mb-2"
         >
           <input
             type="checkbox"
