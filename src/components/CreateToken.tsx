@@ -31,7 +31,7 @@ export const CreateToken: FC = () => {
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
   const [tokenName, setTokenName] = useState("");
-  const [tokenImage, setTokenImage] = useState("");
+  const [tokenImage, setTokenImage] = useState(null);
   const [symbol, setSymbol] = useState("");
   const [metadata, setMetadata] = useState("");
   const [amount, setAmount] = useState("");
@@ -45,15 +45,16 @@ export const CreateToken: FC = () => {
   const balance = useUserSOLBalanceStore((s) => s.balance);
   const { getUserSOLBalance } = useUserSOLBalanceStore();
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
     let reader = new FileReader();
-    reader.onloadend = () => {
-      if (reader.result) {
-        setTokenImage(reader.result);
-      }
-    };
+
     if (file) {
+      reader.onload = function () {
+        if (reader.result) {
+          setTokenImage(reader.result);
+        }
+      };
       reader.readAsDataURL(file);
     }
   };
@@ -256,11 +257,9 @@ export const CreateToken: FC = () => {
       <div className="relative col-span-2">
         <div className="relative w-full h-28 flex justify-center px-6 pt-5 pb-6 border-2 border-white border-dashed rounded-md">
           <div className="absolute flex items-center justify-center m-0 left-0 top-0 h-full w-full p-2">
-            <Image
-              src={tokenImage ? tokenImage : "/images/solana_logo.png"}
+            <img
+              src={tokenImage}
               alt=""
-              width={150}
-              height={150}
               className={`w-full h-full m-auto object-contain ${
                 !tokenImage ? "hidden" : "block"
               }`}
