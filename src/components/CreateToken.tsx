@@ -25,11 +25,13 @@ import {
 } from "@metaplex-foundation/mpl-token-metadata";
 import { notify } from "utils/notifications";
 import useUserSOLBalanceStore from "stores/useUserSOLBalanceStore";
+import Image from "next/image";
 
 export const CreateToken: FC = () => {
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
   const [tokenName, setTokenName] = useState("");
+  const [tokenImage, setTokenImage] = useState("");
   const [symbol, setSymbol] = useState("");
   const [metadata, setMetadata] = useState("");
   const [amount, setAmount] = useState("");
@@ -42,6 +44,19 @@ export const CreateToken: FC = () => {
 
   const balance = useUserSOLBalanceStore((s) => s.balance);
   const { getUserSOLBalance } = useUserSOLBalanceStore();
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    let reader = new FileReader();
+    reader.onloadend = () => {
+      if (reader.result) {
+        setTokenImage(reader.result);
+      }
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
 
   useEffect(() => {
     if (wallet.publicKey) {
@@ -240,6 +255,16 @@ export const CreateToken: FC = () => {
     <div className="grid grid-cols-2 gap-4">
       <div className="relative col-span-2">
         <div className="relative w-full flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+          <div className="absolute flex items-center m-0 left-0 top-0 h-full w-full p-2">
+            <img
+              src={tokenImage}
+              alt=""
+              className={`w-full h-full object-contain ${
+                !tokenImage ? "hidden" : "block"
+              }`}
+            />
+            {/* /images/solana_logo.png */}
+          </div>
           <div className="space-y-1 text-center">
             <svg
               className="mx-auto h-12 w-12 text-gray-400"
@@ -258,16 +283,21 @@ export const CreateToken: FC = () => {
             <div className="flex text-sm text-gray-600">
               <label
                 htmlFor="image-upload"
-                className="w-full h-full cursor-pointe rounded-md font-medium text-primary-color hover:text-secondary-color focus-within:outline-none"
+                className="absolute left-0 top-0 w-full h-full cursor-pointe rounded-md font-medium text-primary-color hover:text-secondary-color focus-within:outline-none"
               >
-                <span>Upload an Image</span>
                 <input
+                  type="file"
+                  accept="image/*"
                   id="image-upload"
                   name="image-upload"
-                  type="file"
-                  className="sr-only absolute w-full h-full top-0 left-0"
-                  // onChange={handleMetadataChange}
+                  className="sr-only w-full h-full top-0 left-0 bg-white"
+                  onChange={handleImageUpload}
                 />
+                {!tokenImage && (
+                  <span className="absolute left-0 bottom-2 w-full">
+                    Upload an Image
+                  </span>
+                )}
               </label>
             </div>
             {/* {selectedFile && (
@@ -328,8 +358,8 @@ export const CreateToken: FC = () => {
           <button
             type="button"
             className="relative w-12 h-11 border border-white rounded-l text-3xl hover:text-primary-color disabled:text-gray-500 disabled:hover:text-gray-500 disabled:cursor-not-allowed"
-            disabled={decimals <= 0 ? true : false}
-            onClick={() => decimals > 0 ? setDecimals(decimals - 1) : null}
+            disabled={decimals <= 1 ? true : false}
+            onClick={() => (decimals > 1 ? setDecimals(decimals - 1) : null)}
           >
             -
           </button>
@@ -344,7 +374,7 @@ export const CreateToken: FC = () => {
             type="button"
             className="relative w-12 h-11 border border-white rounded-r text-xl hover:text-primary-color disabled:text-gray-500 disabled:hover:text-gray-500 disabled:cursor-not-allowed"
             disabled={decimals >= 9 ? true : false}
-            onClick={() => decimals < 9 ? setDecimals(decimals + 1) : null}
+            onClick={() => (decimals < 9 ? setDecimals(decimals + 1) : null)}
           >
             +
           </button>
