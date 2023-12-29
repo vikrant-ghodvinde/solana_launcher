@@ -257,7 +257,7 @@ export const UploadMetadata: FC = ({}) => {
 
         <div className="relative col-span-3 sm:col-span-2">
           {!imageUrl ? (
-            <div className="relative max-w-lg flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+            <div className="relative max-w-lg flex justify-center px-6 pt-5 pb-6 border-2 border-white border-dashed rounded-md">
               <div className="space-y-1 text-center">
                 <svg
                   className="mx-auto h-12 w-12 text-gray-400"
@@ -327,7 +327,7 @@ export const UploadMetadata: FC = ({}) => {
 
         <div className="relative col-span-3 sm:col-span-2">
           {!metadataUrl ? (
-            <div className="relative max-w-lg flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+            <div className="relative max-w-lg flex justify-center px-6 pt-5 pb-6 border-2 border-white border-dashed rounded-md">
               <div className="space-y-1 text-center">
                 <svg
                   className="mx-auto h-12 w-12 text-gray-400"
