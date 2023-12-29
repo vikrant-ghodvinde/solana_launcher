@@ -257,7 +257,7 @@ export const CreateToken: FC = () => {
         <div className="relative w-full h-28 flex justify-center px-6 pt-5 pb-6 border-2 border-white border-dashed rounded-md">
           <div className="absolute flex items-center justify-center m-0 left-0 top-0 h-full w-full p-2">
             <Image
-              src={tokenImage ? tokenImage : "/images"}
+              src={tokenImage ? tokenImage : "/images/solana_logo.png"}
               alt=""
               width={150}
               height={150}
