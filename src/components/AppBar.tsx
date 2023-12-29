@@ -11,11 +11,11 @@ export const AppBar: FC = (props) => {
   const [menuToggle, setMenuToggle] = useState(false);
   const router = useRouter();
   const routes = [
-    { title: "Token Creator", path: "/" },
-    { title: "Upload Metadata", path: "/uploader" },
-    { title: "Update Metadata", path: "/update" },
-    { title: "Token Metadata", path: "/metadata" },
-    { title: "Launched Tokens", path: "/launched-tokens" },
+    { title: "Home", path: "/" },
+    { title: "Manage Tokens", path: "/uploader" },
+    { title: "Token Pools", path: "/update" },
+    // { title: "Token Metadata", path: "/metadata" },
+    // { title: "Launched Tokens", path: "/launched-tokens" },
   ];
   return (
     <nav className="bg-black sticky w-full z-20 top-0 start-0 border-b border-gray-800">
@@ -118,8 +118,8 @@ export const AppBar: FC = (props) => {
                 key={menuItem.path}
                 className={
                   router.pathname === menuItem.path
-                    ? "block py-2 px-3 text-black bg-primary-color rounded lg:bg-transparent lg:text-primary-color lg:p-0 lg:dark:primary-color"
-                    : "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-primary-color lg:p-0 lg:dark:hover:text-primary-color dark:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    ? "block py-2 px-3 text-black bg-primary-color rounded lg:bg-transparent lg:text-primary-color lg:p-0 lg:dark:text-primary-color"
+                    : "block py-2 px-3 text-white rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-primary-color lg:p-0 lg:dark:hover:text-primary-color dark:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                 }
               >
                 <Link href={menuItem.path}>{menuItem.title}</Link>

@@ -283,7 +283,7 @@ export const UploadMetadata: FC = ({}) => {
                       id="image-upload"
                       name="image-upload"
                       type="file"
-                      className="sr-only absolute w-full h-full"
+                      className="sr-only absolute w-full h-full top-0 left-0"
                       onChange={handleImageChange}
                     />
                   </label>
@@ -353,7 +353,7 @@ export const UploadMetadata: FC = ({}) => {
                       id="image-upload"
                       name="image-upload"
                       type="file"
-                      className="sr-only absolute w-full h-full"
+                      className="sr-only absolute w-full h-full top-0 left-0"
                       onChange={handleMetadataChange}
                     />
                   </label>
