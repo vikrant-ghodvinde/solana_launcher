@@ -20,21 +20,20 @@ export const AppBar: FC = (props) => {
   return (
     <nav className="bg-black sticky w-full z-20 top-0 start-0 border-b border-gray-800">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a
-          href="https://flowbite.com/"
-          className="flex items-center space-x-3 rtl:space-x-reverse"
-        >
-          <Image
-            src="/images/solana_logo.png"
-            width={40}
-            height={40}
-            className="h-10"
-            alt="Flowbite Logo"
-          />
-          <span className="hidden sm:inline-block self-center text-2xl font-semibold whitespace-nowrap bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
-            Solana
-          </span>
-        </a>
+        <Link href="/" passHref>
+          <div className="flex items-center cursor-pointer">
+            <Image
+              src="/images/solana_logo.png"
+              width={40}
+              height={40}
+              className="h-10"
+              alt="Flowbite Logo"
+            />
+            <span className="hidden sm:inline-block self-center text-xl font-bold whitespace-nowrap bg-gradient-to-r from-primary-color to-secondary-color bg-clip-text text-transparent">
+              SolanaLauncher
+            </span>
+          </div>
+        </Link>
         <div className="flex items-center gap-4 lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
           <WalletMultiButton className="relative text-black bg-primary-gradient text-sm px-6 py-2 text-center rounded z-10 before:absolute before:w-full before:h-full before:bg-primary-gradient-reversed before:top-0 before:left-0 before:-z-10 before:opacity-0 before:hover:opacity-100 before:transition-all before:delay-150 font-semibold capitalize overflow-hidden" />
           <button
