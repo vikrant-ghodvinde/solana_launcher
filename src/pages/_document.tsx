@@ -24,7 +24,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           ></link>
         </Head>
-        <body className="font-karla">
+        <body>
           <Main />
           <NextScript />
         </body>
