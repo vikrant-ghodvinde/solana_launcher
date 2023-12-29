@@ -12,7 +12,7 @@ export const AppBar: FC = (props) => {
   const router = useRouter();
   const routes = [
     { title: "Home", path: "/" },
-    { title: "Manage Tokens", path: "/uploader" },
+    { title: "Manage Tokens", path: "/manage" },
     { title: "Token Pools", path: "/update" },
     // { title: "Token Metadata", path: "/metadata" },
     // { title: "Launched Tokens", path: "/launched-tokens" },
