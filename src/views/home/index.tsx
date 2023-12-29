@@ -45,7 +45,7 @@ export const HomeView: FC = ({}) => {
         </div>
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="relative col-span-2 text-center">
-            <RequestAirdrop />
+            {/* <RequestAirdrop /> */}
             {wallet && (
               <div className="mt-2 text-sm text-primary-color">
                 SOL Balance: {(balance || 0).toLocaleString()}
