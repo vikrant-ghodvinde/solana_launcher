@@ -32,6 +32,7 @@ export const CreateToken: FC = () => {
   const { publicKey, sendTransaction } = useWallet();
   const [tokenName, setTokenName] = useState("");
   const [tokenImage, setTokenImage] = useState(null);
+  const [imageUrlToggle, setImageUrlToggle] = useState("image");
   const [symbol, setSymbol] = useState("");
   const [metadata, setMetadata] = useState("");
   const [amount, setAmount] = useState("");
@@ -254,56 +255,84 @@ export const CreateToken: FC = () => {
 
   return (
     <div className="grid grid-cols-2 gap-4">
-      <div className="relative col-span-2">
-        <div className="relative w-full h-28 flex justify-center px-6 pt-5 pb-6 border-2 border-white border-dashed rounded-md">
-          <div className="absolute flex items-center justify-center m-0 left-0 top-0 h-full w-full p-2">
-            <img
-              src={tokenImage}
-              alt=""
-              className={`w-full h-full m-auto object-contain ${
-                !tokenImage ? "hidden" : "block"
-              }`}
+      {imageUrlToggle === "url" && (
+        <div className="relative col-span-2">
+          <label htmlFor="" className="inline-block text-white mb-2">
+            Image URL
+          </label>
+          <div className="flex items-center">
+            <input
+              type="text"
+              className="relative w-full h-11 rounded-l bg-transparent border border-r-0 border-white outline-none px-3"
+              placeholder="Image URL"
             />
-            {/* /images/solana_logo.png */}
-          </div>
-          <div className="space-y-1 text-center">
-            <svg
-              className="mx-auto h-12 w-12 text-gray-400"
-              stroke="currentColor"
-              fill="none"
-              viewBox="0 0 48 48"
-              aria-hidden="true"
+            <button
+              type="button"
+              className="relative text-black bg-primary-gradient text-sm shrink-0 h-11 px-6 py-2 text-center rounded-none rounded-r z-10 before:absolute before:w-full before:h-full before:bg-primary-gradient-reversed before:top-0 before:left-0 before:-z-10 before:opacity-0 before:hover:opacity-100 before:transition-all before:delay-150 font-semibold capitalize overflow-hidden"
+              onClick={() => setImageUrlToggle("image")}
             >
-              <path
-                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
+              Upload Image
+            </button>
+          </div>
+        </div>
+      )}
+      {imageUrlToggle === "image" && (
+        <div className="relative col-span-2">
+          <div className="relative w-full h-28 flex justify-center px-6 pt-5 pb-6 border-2 border-white border-dashed rounded-md">
+            <div className="absolute flex items-center justify-center m-0 left-0 top-0 h-full w-full p-2">
+              <img
+                src={tokenImage}
+                alt=""
+                className={`w-full h-full m-auto object-contain ${
+                  !tokenImage ? "hidden" : "block"
+                }`}
               />
-            </svg>
-            <div className="flex text-sm text-gray-600">
-              <label
-                htmlFor="image-upload"
-                className="absolute left-0 top-0 w-full h-full cursor-pointe rounded-md font-medium text-primary-color hover:text-secondary-color focus-within:outline-none"
+            </div>
+            <div className="space-y-1 text-center">
+              <svg
+                className="mx-auto h-12 w-12 text-gray-400"
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 48 48"
+                aria-hidden="true"
               >
-                <input
-                  type="file"
-                  accept="image/*"
-                  id="image-upload"
-                  name="image-upload"
-                  className="sr-only w-full h-full top-0 left-0 bg-white"
-                  onChange={handleImageUpload}
+                <path
+                  d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
-                {!tokenImage && (
-                  <span className="absolute left-0 bottom-4 w-full">
-                    Upload an Image
-                  </span>
-                )}
-              </label>
+              </svg>
+              <div className="flex text-sm text-gray-600">
+                <label
+                  htmlFor="image-upload"
+                  className="absolute left-0 top-0 w-full h-full cursor-pointe rounded-md font-medium text-primary-color hover:text-secondary-color focus-within:outline-none"
+                >
+                  <input
+                    type="file"
+                    accept="image/*"
+                    id="image-upload"
+                    name="image-upload"
+                    className="sr-only w-full h-full top-0 left-0 bg-white"
+                    onChange={handleImageUpload}
+                  />
+                  {!tokenImage && (
+                    <span className="absolute left-0 bottom-4 w-full">
+                      Upload an Image
+                    </span>
+                  )}
+                  <button
+                    className="absolute right-0 bottom-0 text-black bg-primary-gradient text-xs px-4 py-1.5 text-center rounded before:rounded z-10 before:absolute before:w-full before:h-full before:bg-primary-gradient-reversed before:top-0 before:left-0 before:-z-10 before:opacity-0 before:hover:opacity-100 before:transition-all before:delay-150 font-semibold capitalize overflow-hidden"
+                    onClick={() => setImageUrlToggle("url")}
+                  >
+                    Upload URL
+                  </button>
+                </label>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
       <div className="relative col-span-2 sm:col-span-1">
         <label htmlFor="" className="inline-block text-white mb-2">
           Token name
