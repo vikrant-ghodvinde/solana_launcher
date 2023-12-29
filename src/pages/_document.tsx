@@ -18,7 +18,7 @@ class MyDocument extends Document {
         <Head>
           <link rel="shortcut icon" href="/favicon.ico" />
         </Head>
-        <body>
+        <body className="font-karla">
           <Main />
           <NextScript />
         </body>
