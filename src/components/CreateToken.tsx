@@ -255,11 +255,13 @@ export const CreateToken: FC = () => {
     <div className="grid grid-cols-2 gap-4">
       <div className="relative col-span-2">
         <div className="relative w-full h-28 flex justify-center px-6 pt-5 pb-6 border-2 border-white border-dashed rounded-md">
-          <div className="absolute flex items-center m-0 left-0 top-0 h-full w-full p-2">
-            <img
-              src={tokenImage}
+          <div className="absolute flex items-center justify-center m-0 left-0 top-0 h-full w-full p-2">
+            <Image
+              src={tokenImage ? tokenImage : "/images"}
               alt=""
-              className={`w-full h-full object-contain ${
+              width={150}
+              height={150}
+              className={`w-full h-full m-auto object-contain ${
                 !tokenImage ? "hidden" : "block"
               }`}
             />
