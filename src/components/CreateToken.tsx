@@ -294,7 +294,7 @@ export const CreateToken: FC = () => {
                   onChange={handleImageUpload}
                 />
                 {!tokenImage && (
-                  <span className="absolute left-0 bottom-2 w-full">
+                  <span className="absolute left-0 bottom-4 w-full">
                     Upload an Image
                   </span>
                 )}
