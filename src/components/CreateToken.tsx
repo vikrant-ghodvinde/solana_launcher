@@ -254,7 +254,7 @@ export const CreateToken: FC = () => {
   return (
     <div className="grid grid-cols-2 gap-4">
       <div className="relative col-span-2">
-        <div className="relative w-full flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+        <div className="relative w-full h-28 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
           <div className="absolute flex items-center m-0 left-0 top-0 h-full w-full p-2">
             <img
               src={tokenImage}
